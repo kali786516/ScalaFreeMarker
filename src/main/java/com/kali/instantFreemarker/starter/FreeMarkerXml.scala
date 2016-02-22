@@ -33,6 +33,18 @@ object FreeMarkerXml {
     To: ${recipient.name}
     ${recipient.address}
     Dear ${recipient.name},
+
+    Data:-
+    <recipients>
+        <person>
+          <name>John Smith</name>
+          <address>3033 Long Drive, Houston, TX</address>
+        </person>
+        <person>
+          <name>Janet Mason</name>
+          <address>11c Poplar Drive, Knoxville, TN</address>
+        </person>
+      </recipients>
    --###########################################################################################################*/
     val cfg=new Configuration()
     cfg.setObjectWrapper(new DefaultObjectWrapper())
@@ -48,6 +60,7 @@ object FreeMarkerXml {
 
     val tree=new HashMap[String,Object]()
     tree.put("doc", freemarker.ext.dom.NodeModel.parse(sourcefile));
+
 
     val outputfile = new FileWriter (new File("C:\\Users\\kalit_000\\Desktop\\FTL_Writer\\FreeMarkerBook\\xml_output.txt"));
     template.process(tree, outputfile);
